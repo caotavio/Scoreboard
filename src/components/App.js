@@ -9,22 +9,22 @@ class App extends Component {
   state = {
     players: [
       {
-        name: "Guil",
+        name: "Otavio",
         score: 0,
         id: 1
       },
       {
-        name: "Treasure",
+        name: "Taina",
         score: 0,
         id: 2
       },
       {
-        name: "Ashley",
+        name: "Pablo",
         score: 0,
         id: 3
       },
       {
-        name: "James",
+        name: "Raquel",
         score: 0,
         id: 4
       }
@@ -42,17 +42,21 @@ class App extends Component {
 
   handleAddPlayer = (name) => {
     this.setState( prevState => {
-      return {
-        players: [
-          ...prevState.players, //the spread operator represents the players list before adding the new player
-          /*this serves to merge the existing objects with the newly added player objects... if taken out, after submission, only the
-          added player would appear*/
-          {
-            name: name,
-            score: 0,
-            id: this.prevPlayerId += 1
-          }
-        ]
+      if (name !== "") {
+        return {
+          players: [
+            ...prevState.players, //the spread operator represents the players list before adding the new player
+            /*this serves to merge the existing objects with the newly added player objects... if taken out, after submission, only the
+            added player would appear*/
+            {
+              name: name,
+              score: 0,
+              id: this.prevPlayerId += 1
+            }
+          ]
+        }
+      } else {
+        return window.alert("Please insert a name!")
       }
     });
   }
